@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  get 'form_helpers', to: 'welcome#form_helpers'
 
   root 'welcome#index'
 

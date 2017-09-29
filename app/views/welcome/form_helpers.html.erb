@@ -1,0 +1,282 @@
+<div class="container">
+  <h1>Template</h1>
+
+  <h2>ERB Codigo Ruby Embebido</h2>
+
+  <pre>
+    &lt;h1&gt;Names of all the people&lt;/h1&gt;
+    &lt;% @people.each do |person| %&gt;
+    Name: &lt;%= person.name %&gt;&lt;br&gt;
+    &lt;% end %&gt;
+  </pre>
+
+  <h2>Builder Produce codigo XML</h2>
+
+  <p>Entrada</p>
+  <pre>
+    xml.em("emphasized")
+    xml.em { xml.b("emph & bold") }
+    xml.a("A Link", "href" => "http://rubyonrails.org")
+    xml.target("name" => "compile", "option" => "fast")
+  </pre>
+
+  <p>Salida</p>
+  <pre>
+    &lt;em&gt;emphasized&lt;/em&gt;
+    &lt;em&gt;&lt;b&gt;emph &amp;amp; bold&lt;/b&gt;&lt;/em&gt;
+    &lt;a href=&quot;http://rubyonrails.org&quot;&gt;A link&lt;/a&gt;
+    &lt;target option=&quot;fast&quot; name=&quot;compile&quot; /&gt;
+  </pre>
+
+  <h2>JBuilder: Generadr de codigo JSON</h2>
+
+  <p>Entrada</p>
+  <pre>
+    json.name("Alex")
+    json.email("alex@example.com")
+  </pre>
+
+  <p>Salida</p>
+
+  <pre>
+    {
+      "name": "Alex",
+      "email": "alex@example.com"
+    }
+  </pre>
+
+  <h2>Halm</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;section class=&rdquo;container&rdquo;&gt;
+      &lt;h1&gt;&lt;%= post.title %&gt;&lt;/h1&gt;
+      &lt;h2&gt;&lt;%= post.subtitle %&gt;&lt;/h2&gt;
+      &lt;div class=&rdquo;content&rdquo;&gt;
+        &lt;%= post.content %&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  </pre>
+
+  <p>Salida</p>
+  <pre>
+    %section.container
+      %h1= post.title
+      %h2= post.subtitle
+      .content
+        = post.content
+  </pre>
+
+
+  <h1>Form helpers</h1>
+
+  <p>Basic Form</p>
+
+  <p>Entrada</p>
+  <pre>
+      &lt;%= form_tag do %&gt;
+        Form contents
+      &lt;% end %&gt;
+  </pre>
+
+  <p>produce</p>
+  <pre>
+    &lt;form accept-charset="UTF-8" action="/" method="post"&gt;
+      &lt;input name="utf8" type="hidden" value="&amp;#x2713;" /&gt;
+      &lt;input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts=" /&gt;
+      Form contents
+    &lt;/form&gt;
+  </pre>
+
+  <p>Se coloca el helper</p>
+
+  <%= form_tag do %>
+    Form contents
+  <% end %>
+
+  <h2>Otro Ejemplo</h2>
+
+  <p>Entrada</p>
+
+  <pre>
+    &lt;%= form_tag("/search", method: "get") do %&gt;
+      &lt;%= label_tag(:q, "Search for:") %&gt;
+      &lt;%= text_field_tag(:q) %&gt;
+      &lt;%= submit_tag("Search") %&gt;
+    &lt;% end %&gt;
+  </pre>
+
+  <p>Salida<p>
+
+  <pre>
+    &lt;form accept-charset="UTF-8" action="/search" method="get"&gt;
+      &lt;input name="utf8" type="hidden" value="&amp;#x2713;" /&gt;
+      &lt;label for="q"&gt;Search for:&lt;/label&gt;
+      &lt;input id="q" name="q" type="text" /&gt;
+      &lt;input name="commit" type="submit" value="Search" /&gt;
+    &lt;/form&gt;
+  </pre>
+
+  <p>Se coloca el helper</p>
+  <%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+
+  <h2>Helper para generar elementos en un formulario</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= check_box_tag(:pet_dog) %&gt;
+    &lt;%= label_tag(:pet_dog, "I own a dog") %&gt;
+    &lt;%= check_box_tag(:pet_cat) %&gt;
+    &lt;%= label_tag(:pet_cat, "I own a cat") %&gt;
+  </pre>
+
+  <p>Salida</p>
+  <pre>
+    &lt;input id="pet_dog" name="pet_dog" type="checkbox" value="1" /&gt;
+    &lt;label for="pet_dog"&gt;I own a dog&lt;/label&gt;
+    &lt;input id="pet_cat" name="pet_cat" type="checkbox" value="1" /&gt;
+    &lt;label for="pet_cat"&gt;I own a cat&lt;/label&gt;
+  </pre>
+
+  <p>Se coloca el helper</p>
+  <%= check_box_tag(:pet_dog) %>
+  <%= label_tag(:pet_dog, "I own a dog") %><br>
+  <%= check_box_tag(:pet_cat) %>
+  <%= label_tag(:pet_cat, "I own a cat") %>
+
+  <h2>Radio Buttons</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= radio_button_tag(:age, "child") %&gt;
+    &lt;%= label_tag(:age_child, "I am younger than 21") %&gt;
+    &lt;%= radio_button_tag(:age, "adult") %&gt;
+    &lt;%= label_tag(:age_adult, "I'm over 21") %&gt;
+  </pre>
+
+  <p>Salida</p>
+  <pre>
+    &lt;input id="age_child" name="age" type="radio" value="child" /&gt;
+    &lt;label for="age_child"&gt;I am younger than 21&lt;/label&gt;
+    &lt;input id="age_adult" name="age" type="radio" value="adult" /&gt;
+    &lt;label for="age_adult"&gt;I'm over 21&lt;/label&gt;
+  </pre>
+
+  <p>Se coloca el helper</p>
+  <%= radio_button_tag(:age, "child") %>
+  <%= label_tag(:age_child, "I am younger than 21") %><br>
+  <%= radio_button_tag(:age, "adult") %>
+  <%= label_tag(:age_adult, "I'm over 21") %>
+
+  <h2>Otros helpers de Interes</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= text_area_tag(:message, "Hi, nice site", size: "24x6") %&gt;
+    &lt;%= password_field_tag(:password) %&gt;
+    &lt;%= hidden_field_tag(:parent_id, "5") %&gt;
+    &lt;%= search_field(:user, :name) %&gt;
+    &lt;%= telephone_field(:user, :phone) %&gt;
+    &lt;%= date_field(:user, :born_on) %&gt;
+    &lt;%= datetime_local_field(:user, :graduation_day) %&gt;
+    &lt;%= month_field(:user, :birthday_month) %&gt;
+    &lt;%= week_field(:user, :birthday_week) %&gt;
+    &lt;%= url_field(:user, :homepage) %&gt;
+    &lt;%= email_field(:user, :address) %&gt;
+    &lt;%= color_field(:user, :favorite_color) %&gt;
+    &lt;%= time_field(:task, :started_at) %&gt;
+    &lt;%= number_field(:product, :price, in: 1.0..20.0, step: 0.5) %&gt;
+    &lt;%= range_field(:product, :discount, in: 1..100) %&gt;
+  </pre>
+
+  <p>Salida</p>
+  <pre>
+    &lt;textarea id="message" name="message" cols="24" rows="6"&gt;Hi, nice site&lt;/textarea&gt;
+    &lt;input id="password" name="password" type="password" /&gt;
+    &lt;input id="parent_id" name="parent_id" type="hidden" value="5" /&gt;
+    &lt;input id="user_name" name="user[name]" type="search" /&gt;
+    &lt;input id="user_phone" name="user[phone]" type="tel" /&gt;
+    &lt;input id="user_born_on" name="user[born_on]" type="date" /&gt;
+    &lt;input id="user_graduation_day" name="user[graduation_day]" type="datetime-local" /&gt;
+    &lt;input id="user_birthday_month" name="user[birthday_month]" type="month" /&gt;
+    &lt;input id="user_birthday_week" name="user[birthday_week]" type="week" /&gt;
+    &lt;input id="user_homepage" name="user[homepage]" type="url" /&gt;
+    &lt;input id="user_address" name="user[address]" type="email" /&gt;
+    &lt;input id="user_favorite_color" name="user[favorite_color]" type="color" value="#000000" /&gt;
+    &lt;input id="task_started_at" name="task[started_at]" type="time" /&gt;
+    &lt;input id="product_price" max="20.0" min="1.0" name="product[price]" step="0.5" type="number" /&gt;
+    &lt;input id="product_discount" max="100" min="1" name="product[discount]" type="range" /&gt;
+  </pre>
+
+  <p>Se coloca el helper</p>
+
+  <%= text_area_tag(:message, "Hi, nice site", size: "24x6") %><br>
+  <%= password_field_tag(:password) %><br>
+  <%= hidden_field_tag(:parent_id, "5") %><br>
+  <%= search_field(:user, :name) %><br>
+  <%= telephone_field(:user, :phone) %><br>
+  <%= date_field(:user, :born_on) %><br>
+  <%= datetime_local_field(:user, :graduation_day) %><br>
+  <%= month_field(:user, :birthday_month) %><br>
+  <%= week_field(:user, :birthday_week) %><br>
+  <%= url_field(:user, :homepage) %><br>
+  <%= email_field(:user, :address) %><br>
+  <%= color_field(:user, :favorite_color) %><br>
+  <%= time_field(:task, :started_at) %><br>
+  <%= number_field(:product, :price, in: 1.0..20.0, step: 0.5) %><br>
+  <%= range_field(:product, :discount, in: 1..100) %><br>
+
+  <h2>Modelo Objeto del Helper</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= text_field(:person, :name) %&gt;
+  </pre>
+
+  <p>Salida</p>
+  <pre>
+    &lt;input id="person_name" name="person[name]" type="text" value="Henry"/&gt;
+  </pre>
+
+  <p>Se coloca helper</p>
+  <input id="person_name" name="person[name]" type="text" value="Henry"/>
+
+  <h2>Time Zone and Country Select</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= time_zone_select(:person, :time_zone) %&gt;
+  </pre>
+
+  <p>Se produce el siguiente helper</p>
+  <%= time_zone_select(:person, :time_zone) %>
+
+  <h2>Helpers Barebones</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= select_date Date.today, prefix: :start_date %&gt;
+  </pre>
+
+  <p>El helper produce esto</p>
+  <%= select_date Date.today, prefix: :start_date %>
+
+  <h2>Componentes Individuales</h2>
+
+  <p>Entrada</p>
+  <pre>
+    &lt;%= select_year(2009) %&gt;
+    &lt;%= select_year(Time.now) %&gt;
+  </pre>
+
+  <p>Se coloca un helper</p>
+  <%= select_year(2009) %>
+  <%= select_year(Time.now) %>
+
+  <br><br><br><br>
+
+</div>
