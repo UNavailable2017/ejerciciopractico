@@ -196,7 +196,14 @@
         </div>
       </div>
     </div>
-  
 
-  </body>
-</html>
+
+<% content_for :footr do %>
+  <div class="container">
+    <div class="text-center">
+      <%= image_tag "porkey.jpg", {height: 200} %>
+      <h3> ¡¡Muchas Gracias!! </h3>
+    </div>
+  </div>
+
+<% end %>
