@@ -1,11 +1,15 @@
+<% content_for :titulo do %>
+  <title>G-Bootstrap</title>
+<% end %>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<% content_for :header do %>
+  <div class="container">
+    <div class="text-center">
+      <h2> Soy Layout </h2>
+      <%= render html: "<strong> Este texto es 'html render' </strong>".html_safe %>
+    </div>
+  </div>
+<% end %>
 
     <div class="container">
 
@@ -319,5 +323,12 @@ end
       </code>
     </div>
 
-  </body>
-</html>
+<% content_for :footr do %>
+  <div class="container">
+    <div class="text-center">
+      <%= image_tag "porkey.jpg", {height: 200} %>
+      <h3> ¡¡Muchas Gracias!! </h3>
+    </div>
+  </div>
+
+<% end %>
